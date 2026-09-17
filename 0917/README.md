@@ -27,17 +27,17 @@
 
 
 
-; AddTwo.asm - adds two 32-bit integers
-; Chapter 3 example
-
-.386    ;minimum CPU required for this program
-.model flat, stdcall    ; flat: generate code for protected mode
-.stack 4096             ; stdcall: enables the calling of MS Widows functions.procedures from Irvine32 link lib
-.code
-main PROC
-    mov eax, 5
-    add eax, 6
-
-    INVOKE ExitProcess, 0   ; INVOKE: called a procedure or function
-main ENDP
-END main
+1.: ; AddTwo.asm - adds two 32-bit integers
+2.: ; Chapter 3 example
+3.: 
+4.: .386    ;minimum CPU required for this program
+5.: .model flat, stdcall    ; flat: generate code for protected mode
+6.: .stack 4096             ; stdcall: enables the calling of MS Widows functions.procedures from Irvine32 link lib
+7.: .code
+8.: main PROC
+9.:    mov eax, 5
+10.:    add eax, 6
+11.:
+12.:    INVOKE ExitProcess, 0   ; INVOKE: called a procedure or function
+13.:main ENDP
+14.:END main
