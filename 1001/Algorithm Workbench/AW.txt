@@ -50,13 +50,13 @@ Use the following data definitions for Questions 12–18:
 
 
 13. What will be the value of EAX after each of the following instructions execute?
-  mov eax,TYPE myBytes ; a.
-  mov eax,LENGTHOF myBytes ; b.
-  mov eax,SIZEOF myBytes ; c.
-  mov eax,TYPE myWords ; d.
-  mov eax,LENGTHOF myWords ; e.
-  mov eax,SIZEOF myWords ; f.
-  mov eax,SIZEOF myString ; g.
+  mov eax,TYPE myBytes         ; a.
+  mov eax,LENGTHOF myBytes     ; b.
+  mov eax,SIZEOF myBytes       ; c.
+  mov eax,TYPE myWords         ; d.
+  mov eax,LENGTHOF myWords     ; e.
+  mov eax,SIZEOF myWords       ; f.
+  mov eax,SIZEOF myString      ; g.
 
 
 14. Write a single instruction that moves the first two bytes in myBytes to the DX register. The
