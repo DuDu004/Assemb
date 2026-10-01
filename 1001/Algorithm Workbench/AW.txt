@@ -1,41 +1,90 @@
 1. Write a sequence of MOV instructions that will exchange the upper and lower words in a
 doubleword variable named three.
-
+  [정답]:  
+  mov ax, WORD PTR three
+  mov bx, WORD PTR three+2
+  mov WORD PTR three, bx
+  mov WORD PTR three+2, ax
 
 2. Using the XCHG instruction no more than three times, reorder the values in four 8-bit registers from the order A,B,C,D to B,C,D,A.
+  [정답}
+  xchg A, B
+  xchg A, C
+  xchg A, D
 
+    A,B,C,D → B,C,D,A
 
 3. Transmitted messages often include a parity bit whose value is combined with a data byte to
 produce an even number of 1 bits. Suppose a message byte in the AL register contains
 01110101. Show how you could use the Parity flag combined with an arithmetic instruction
 to determine if this message byte has even or odd parity.
+  [정답]:
+  add al, 0
 
+    01110101은 1의 개수가 5개 → 홀수 → PF = 0
+    따라서 odd parity.
 
 4. Write code using byte operands that adds two negative integers and causes the Overflow
 flag to be set.
+  [정답]:
+  mov al, -100
+  add al, -50
 
+    -100 + -50 = -150 → signed byte 범위 초과 → OF = 1
 
 5. Write a sequence of two instructions that use addition to set the Zero and Carry flags at the
 same time.
+  [정답]:
+  mov al, 0FFh
+  add al, 1
 
+    FFh + 1 = 00h
+    결과가 0 → ZF=1
+    Carry 발생 → CF=1
 
 6. Write a sequence of two instructions that set the Carry flag using subtraction.
+  [정답]:
+  mov al, 0
+  sub al, 1
 
+    0 - 1 → unsigned borrow 발생 → CF=1
 
 7. Implement the following arithmetic expression in assembly language: EAX = –val2 + 7 –
 val3 + val1. Assume that val1, val2, and val3 are 32-bit integer variables.
-
+  [정답]:
+  mov eax, val2
+  neg eax
+  add eax, 7
+  sub eax, val3
+  add eax, val1
 
 8. Write a loop that iterates through a doubleword array and calculates the sum of its elements
 using a scale factor with indexed addressing.
+  [정답]:
+  mov esi, 0
+  mov ecx, LENGTHOF array
+  xor eax, eax
+  L1:
+  add eax, array[esi*4]
+  inc esi
+  loop L1
 
+      esi*4 → DWORD 배열의 인덱스 주소 계산.
 
 9. Implement the following expression in assembly language: AX = (val2 + BX) –val4.
 Assume that val2 and val4 are 16-bit integer variables.
-
+  [정답]:
+  mov ax, val2
+  add ax, bx
+  sub ax, val4
 
 10. Write a sequence of two instructions that set both the Carry and Overflow flags at the same time.
+  [정답]:
+  mov al, 80h
+  add al, 80h
 
+    80h + 80h = 00h
+    Carry와 signed Overflow가 모두 발생 → CF=1, OF=1
 
 11. Write a sequence of instructions showing how the Zero flag could be used to indicate
 unsigned overflow after executing INC and DEC instructions.
@@ -44,38 +93,56 @@ Use the following data definitions for Questions 12–18:
   myBytes BYTE 10h,20h,30h,40h
   myWords WORD 3 DUP(?),2000h
   myString BYTE "ABCDE"
+  [정답}:
+  mov al, 0FFh
+  inc al
+  jz overflow_occurred
+
+  FFh → 00h이므로 ZF=1.
 
 
 12. Insert a directive in the given data that aligns myBytes to an even-numbered address.
-
+  [정답]:
+  ALIGN 2
 
 13. What will be the value of EAX after each of the following instructions execute?
-  mov eax,TYPE myBytes         ; a.
-  mov eax,LENGTHOF myBytes     ; b.
-  mov eax,SIZEOF myBytes       ; c.
-  mov eax,TYPE myWords         ; d.
-  mov eax,LENGTHOF myWords     ; e.
-  mov eax,SIZEOF myWords       ; f.
-  mov eax,SIZEOF myString      ; g.
+  mov eax,TYPE myBytes         ; a.      =>      1
+  mov eax,LENGTHOF myBytes     ; b.      =>      4
+  mov eax,SIZEOF myBytes       ; c.      =>      4
+  mov eax,TYPE myWords         ; d.      =>      2 
+  mov eax,LENGTHOF myWords     ; e.      =>      4
+  mov eax,SIZEOF myWords       ; f.      =>      8
+  mov eax,SIZEOF myString      ; g.      =>      5
+
+    TYPE은 원소 하나의 크기, LENGTHOF는 원소 개수, SIZEOF는 전체 바이트 크기
 
 
 14. Write a single instruction that moves the first two bytes in myBytes to the DX register. The
 resulting value will be 2010h.
+  [정답]:
+  mov dx, WORD PTR myBytes
 
+    → Little-Endian이므로 DX = 2010h
 
 15. Write an instruction that moves the second byte in myWords to the AL register.
-
+  [정답]:
+  mov al, BYTE PTR myWords+1
 
 16. Write an instruction that moves all four bytes in myBytes to the EAX register.
-
+  [정답]:
+  mov eax, DWORD PTR myBytes
 
 17. Insert a LABEL directive in the given data that permits myWords to be moved directly to a
 32-bit register.
-
+  [정답]:
+  myWordsD LABEL DWORD
+  myWords WORD 3 DUP(?),2000h
 
 18. Insert a LABEL directive in the given data that permits myBytes to be moved directly to a
 16-bit register.
-
+  [정답]:
+  myBytesW LABEL WORD
+  myBytes BYTE 10h,20h,30h,40h
 
 
 
