@@ -2,21 +2,51 @@ The following exercises can be solved using either 32-bit or 64-bit code.
 
 1. Write a sequence of statements that use only PUSH and POP instructions to exchange 
 the values in the EAX and EBX registers (or RAX and RBX in 64-bit mode).
+  
+  정답 >
+                ; EAX = A, EBX = B
+    push eax    ; EAX -> [A]
+    push ebx    ; EBX -> [A][B]
+    pop eax     ; EAX -> B
+    pop ebx     ; EBX -> A
 
 
 2. Suppose you wanted a subroutine to return to an address that was 3 bytes higher in memory
 than the return address currently on the stack. Write a sequence of instructions that would be
 inserted just before the subroutine’s RET instruction that accomplish this task.
 
+  정답 >
+    add DWORD PTR [esp], 3
+    ret
+
 
 3. Functions in high-level languages often declare local variables just below the return address
 on the stack. Write an instruction that you could put at the beginning of an assembly language
 subroutine that would reserve space for two integer doubleword variables. Then, assign the values 1000h and 2000h to the two local variables.
 
+  정답 >
+    sub esp, 8
+    mov DWORD PTR [esp], 1000h
+    mov DWORD PTR [esp+4], 2000h
+  => DWORD 하나 = 4바이트이므로 2개에 8바이트가 필요하다.
+
 
 4. Write a sequence of statements using indexed addressing 
 that copies an element in a doubleword array to the previous position in the same array.
 
+  정답 >
+    mov eax, array[esi*4]    ; array[i] -> EAX
+    mov array[esi*4-4], eax  ; EAX -> array[i-1]
+
 
 5. Write a sequence of statements that display a subroutine’s return address. 
 Be sure that whatever modifications you make to the stack do not prevent the subroutine from returning to its caller.
+
+  정답 >
+    mov eax, [esp]
+    call WriteHex    ; Irvine32 라이브러리 사용
+    ret
+
+
+
+
