@@ -1,1 +1,22 @@
+The following exercises can be solved using either 32-bit or 64-bit code.
 
+1. Write a sequence of statements that use only PUSH and POP instructions to exchange 
+the values in the EAX and EBX registers (or RAX and RBX in 64-bit mode).
+
+
+2. Suppose you wanted a subroutine to return to an address that was 3 bytes higher in memory
+than the return address currently on the stack. Write a sequence of instructions that would be
+inserted just before the subroutine’s RET instruction that accomplish this task.
+
+
+3. Functions in high-level languages often declare local variables just below the return address
+on the stack. Write an instruction that you could put at the beginning of an assembly language
+subroutine that would reserve space for two integer doubleword variables. Then, assign the values 1000h and 2000h to the two local variables.
+
+
+4. Write a sequence of statements using indexed addressing 
+that copies an element in a doubleword array to the previous position in the same array.
+
+
+5. Write a sequence of statements that display a subroutine’s return address. 
+Be sure that whatever modifications you make to the stack do not prevent the subroutine from returning to its caller.
