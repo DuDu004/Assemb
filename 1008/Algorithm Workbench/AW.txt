@@ -16,8 +16,12 @@ than the return address currently on the stack. Write a sequence of instructions
 inserted just before the subroutine’s RET instruction that accomplish this task.
 
   정답 >
-    add DWORD PTR [esp], 3
-    ret
+    MySubroutine PROC
+      pop eax                 ; Stack -> EAX
+      add eax, 3              ; EAX + 3
+      push eax                ; EAX -> Stack
+      ret                     ; 수정된 주소로 돌아감
+    MySubroutine ENDP
 
 
 3. Functions in high-level languages often declare local variables just below the return address
@@ -25,28 +29,41 @@ on the stack. Write an instruction that you could put at the beginning of an ass
 subroutine that would reserve space for two integer doubleword variables. Then, assign the values 1000h and 2000h to the two local variables.
 
   정답 >
-    sub esp, 8
-    mov DWORD PTR [esp], 1000h
-    mov DWORD PTR [esp+4], 2000h
-  => DWORD 하나 = 4바이트이므로 2개에 8바이트가 필요하다.
+    sub esp, 8                      ; 8바이트 (2 X DWORD) 예약
+    mov DWORD PTR [esp], 1000h      ; 첫 번째 DWORD
+    mov DWORD PTR [esp+4], 2000h    ; 두 번째 DWORD
+    ; DWORD 하나 = 4바이트이므로 8바이트로 맞추기 위해 2개가 필요하다.
+    add esp 8
+    ret
 
 
 4. Write a sequence of statements using indexed addressing 
 that copies an element in a doubleword array to the previous position in the same array.
 
   정답 >
-    mov eax, array[esi*4]    ; array[i] -> EAX
-    mov array[esi*4-4], eax  ; EAX -> array[i-1]
+    .data
+    array DWORD 10, 20, 30, 40, 50
+
+    .code
+      mov esi, 4              ; esi = 4 (두 번째 요소부터 시작, 배열은 0부터 인덱싱)
+      mov ecx, 4              ; ecx = 4 (반복 횟수, 배열 크기 - 1)
+
+    CopyLoop:
+      mov eax, array[esi*4]    ; array[i] -> EAX
+      mov array[esi*4-4], eax  ; EAX -> array[i-1]
+      dec esi                  ; esi 감소
+      loop CopyLoop
 
 
 5. Write a sequence of statements that display a subroutine’s return address. 
 Be sure that whatever modifications you make to the stack do not prevent the subroutine from returning to its caller.
 
   정답 >
-    mov eax, [esp]
-    call WriteHex    ; Irvine32 라이브러리 사용
-    ret
-
+    MySubroutine PROC
+      mov eax, [esp]     ; EAX <- 반환 주소
+      call WriteHex      ; Irvine32 라이브러리 사용
+      ret
+    MySubroutine ENDP
 
 
 
