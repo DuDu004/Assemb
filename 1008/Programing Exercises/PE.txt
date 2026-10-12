@@ -7,6 +7,42 @@ by your instructor. Use explanatory comments in your programs at the beginning o
 Write a program that displays the same string in four different colors, using a loop.
 Call the SetTextColor procedure from the book’s link library.
 Any colors may be chosen, but you may find it easiest to change the foreground color.
+요구사항: 동일한 문자열을 네 가지 색상으로 출력한다. SetTextColor 프로시저를 호출하고 반복문을 사용한다.
+
+    INCLUDE Irvine32.inc
+
+    .data
+        message BYTE "Assembly Programming", 0
+
+        ; Four foreground colors
+        colors DWORD lightRed, lightGreen, lightBlue, yellow
+
+    .code
+    main PROC
+        mov esi, OFFSET colors
+        mov ecx, LENGTHOF colors
+
+    L1:
+        ; Set the foreground color for the current iteration
+        mov eax, [esi]
+        call SetTextColor
+
+        ; Display the same string in the selected color
+        mov edx, OFFSET message
+        call WriteString
+        call Crlf
+
+        add esi, TYPE colors
+        loop L1
+
+        ; Restore the default text color
+        mov eax, lightGray + (black * 16)
+        call SetTextColor
+
+        exit
+    main ENDP
+
+    END main
 
 
 2. Linking Array Items
@@ -21,6 +57,44 @@ Suppose you used the following sample data, and assumed the arrays use zero-base
 
 Then the values copied (in order) to the output array would be A,B,C,D,E,F,G,H.
 Declare the character array as type BYTE, and to make the problem more interesting, declare the links array type DWORD.
+요구사항: start에서 시작해 links 배열이 가리키는 인덱스를 순서대로 따라가고, 해당 위치의 문자를 새로운 배열에 복사한다.
+
+  INCLUDE Irvine32.inc
+
+    .data
+    start = 1
+
+    chars BYTE 'H', 'A', 'C', 'E', 'B', 'D', 'F', 'G'
+    links BYTE 0, 4, 5, 6, 2, 3, 7, 0
+
+    output BYTE 8 DUP(?)
+
+    .code
+    main PROC
+        mov esi, start                   ; ESI = 시작 인덱스 = 1
+        mov edi, 0                       ; EDI = 출력 배열 인덱스
+        mov ecx, 8                       ; 반복 횟수 = 8
+
+    L1:
+        movzx eax, chars[esi]            ; AL = chars[esi]
+        mov output[edi], al              ; output[edi] = chars[esi]
+
+        movzx esi, links[esi]            ; ESI = links[esi] (다음 인덱스)
+
+        inc edi                          ; 출력 배열 인덱스 증가
+        loop L1
+
+        ; 출력 배열 출력
+        lea edx, output
+        call WriteString
+        call Crlf
+
+        exit
+    main ENDP
+
+    END main
+
+    실행 결과: A.B.C.D.E.F.G.H
 
 
 3. Simple Addition (1)
