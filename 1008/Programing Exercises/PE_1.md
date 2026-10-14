@@ -56,44 +56,21 @@ END main
 
 ## 3. 코드 해설
 
-  --------------------------------------------------------------------------------------------
-  코드                                                     의미
-  -------------------------------------------------------- -----------------------------------
-  `INCLUDE Irvine32.inc`                                   Irvine32 라이브러리의 선언과 기능을
-                                                           사용한다.
-
-  `message BYTE "Assembly Programming", 0`                 출력할 문자열을 선언한다. 마지막
-                                                           `0`은 문자열의 끝을 나타낸다.
-
-  `colors DWORD lightRed, lightGreen, lightBlue, yellow`   네 가지 색상 값을 배열에 저장한다.
-
-  `mov esi, OFFSET colors`                                 `ESI`에 색상 배열의 시작 주소를
-                                                           저장한다.
-
-  `mov ecx, LENGTHOF colors`                               배열 원소 개수인 `4`를 반복 횟수로
-                                                           설정한다.
-
-  `mov eax, [esi]`                                         현재 위치의 색상 값을 `EAX`로
-                                                           가져온다.
-
-  `call SetTextColor`                                      `EAX`에 지정된 색상 값으로 텍스트
-                                                           색상을 변경한다.
-
-  `mov edx, OFFSET message`                                `EDX`에 문자열의 시작 주소를
-                                                           저장한다.
-
-  `call WriteString`                                       문자열을 출력한다.
-
-  `call Crlf`                                              줄을 바꾼다.
-
-  `add esi, TYPE colors`                                   `ESI`를 다음 색상 원소로 이동한다.
-                                                           `DWORD`이므로 4바이트 증가한다.
-
-  `loop L1`                                                `ECX`를 1 감소시킨 후, 0이 아니면
-                                                           `L1`로 돌아간다.
-
-  `exit`                                                   프로그램을 종료한다.
-  --------------------------------------------------------------------------------------------
+  | 코드 | 설명 |
+  |---|---|
+  | `INCLUDE Irvine32.inc` | Irvine32 라이브러리의 선언과 기능을 사용한다. |
+  |`message BYTE "Assembly Programming", 0` | 출력할 문자열을 선언한다. 마지막 `0`은 문자열의 끝을 나타낸다. |
+  |`colors DWORD lightRed, lightGreen, lightBlue, yellow` | 네 가지 색상 값을 배열에 저장한다. |
+  |`mov esi, OFFSET colors` | `ESI`에 색상 배열의 시작 주소를 저장한다. |
+  |`mov ecx, LENGTHOF colors` | 배열 원소 개수인 `4`를 반복 횟수로 설정한다. |
+  |`mov eax, [esi]` | 현재 위치의 색상 값을 `EAX`로 가져온다. |
+  |`call SetTextColor` | `EAX`에 지정된 색상 값으로 텍스트 색상을 변경한다. |
+  |`mov edx, OFFSET message` | `EDX`에 문자열의 시작 주소를 저장한다. |
+  |`call WriteString` | 문자열을 출력한다. |
+  |`call Crlf` | 줄을 바꾼다. |
+  |`add esi, TYPE colors` | `ESI`를 다음 색상 원소로 이동한다. `DWORD`이므로 4바이트 증가한다. |
+  |`loop L1` | `ECX`를 1 감소시킨 후, 0이 아니면 `L1`로 돌아간다. |
+  | `exit` | 프로그램을 종료한다.  |
 
 ## 4. 핵심 개념
 
