@@ -2,28 +2,37 @@
     mov bx,0FFFFh
     and bx,6Bh
 
+    정답: BX = 006Bh
 
 2. What will be the value of BX after the following instructions execute?
     mov bx,91BAh
     and bx,92h
 
+    정답: bx = 0092h
 
 3. What will be the value of BX after the following instructions execute?
     mov bx,0649Bh
     or bx,3Ah
 
+    정답: bx = 64BBh
+
 4. What will be the value of BX after the following instructions execute?
     mov bx,029D6h
     xor bx,8181h
+
+    정답: bx = A857h
 
 5. What will be the value of EBX after the following instructions execute?
     mov ebx,0AFAF649Bh
     or ebx,3A219604h
 
+    정답: EBX = BFAFF69Fh
+
 6. What will be the value of RBX after the following instructions execute?
     mov rbx,0AFAF649Bh
     xor rbx,0FFFFFFFFh
 
+    정답: RBX = 0000000050509B64h
 
 7. In the following instruction sequence, show the resulting value of AL where indicated, in binary:
     mov al,01101111b
@@ -35,6 +44,11 @@
     mov al,94h
     xor al,37h             ; d.
 
+    정답:
+        a: 00101101b
+        b: 01001000b
+        c: 01101111b
+        d: 10100011b
 
 8. In the following instruction sequence, show the resulting value of AL where indicated, in
     hexadecimal:
@@ -47,6 +61,11 @@
     mov al,72h
     xor al,0DCh     ; d.
 
+    정답:
+        a: 85h
+        b: 34h
+        c: BFh
+        d: AEh
 
 9. In the following instruction sequence, show the values of the Carry, Zero, and Sign flags where indicated:
     mov al,00001111b
@@ -56,10 +75,23 @@
     mov al,00000101b
     cmp al,00000111b        ; c. CF= ZF= SF=
 
+    정답: 문제       CF        ZF        SF
+            a:        0        0        0        -> 결과 02h, 최상위 비트가 0
+            b:        0        0        0        -> 06h - 05h = 01h
+            c:        1        0        1        -> 05h - 07h = FEh (8비트 결과)
+    [TEST] : AND 연산 결과로 플래그를 설정하지만, 결과를 AL에 저장하지 않는다.
+    [CMP]  : 뺄셈 결과로 플래그를 설정하지만, 결과를 저장하지 않는다.
 
 10. Which conditional jump instruction executes a branch based on the contents of ECX?
 
+    정답: JECXZ
+        => 만약 ECX = 0 이라면 JUMP한다.
+
 11. How are JA and JNBE affected by the Zero and Carry flags?
+
+    정답: JA와 JNBE는 동일한 조건으로 분기한다.
+        - 분기 조건: CF = 0 그리고 ZF = 0
+        - 즉,  unsigned 비교에서 왼쪽 값이 오른쪽 값보다 클 때 분기한다.
 
 12. What will be the final value in EDX after this code executes?
     mov edx,1
@@ -69,6 +101,8 @@
     mov edx, 0
   L1:
 
+    정답: EDX = 1
+        => JL은 signed 비교이므로 7FFFh < 8000h가 참이라 L1로 분기
 
 13. What will be the final value in EDX after this code executes?
     mov edx,1
@@ -78,6 +112,8 @@
     mov edx,0
   L1:
 
+    정답: EDX = 0
+        => JB는 unsigned 비교에서 왼쪽 값이 더 작을 때 분기
 
 14. What will be the final value in EDX after this code executes?
     mov edx,1
@@ -87,33 +123,42 @@
     mov edx,0
   L2:
 
+    정답: EDX = 0
+        => 7FFFh < -32768은 거짓이므로 mov edx,0이 실행
 
 15. (True/False): The following code will jump to the label named Target.
     mov eax, -30
     cmp eax, -50
     jg Target
 
+    정답: True
+        => -30 > -50 은 참이다.
+        => JG는 signed 비교에서 왼쪽 값이 더 클 때 분기.
 
 16. (True/False): The following code will jump to the label named Target.
     mov eax, -42
     cmp eax, 26
     ja Target
 
+    정답: True
 
 17. What will be the value of RBX after the following instructions execute?
     mov rbx, 0FFFFFFFFFFFFFFFFh
     and rbx, 80h
 
+    정답: RBX = 0000 0000 0000 0080h
 
 18. What will be the value of RBX after the following instructions execute?
     mov rbx, 0FFFFFFFFFFFFFFFFh
     and rbx, 808080h
 
+    정답: RBX = 0000 0000 0080 8080h
 
 19. What will be the value of RBX after the following instructions execute?
     mov rbx, 0FFFFFFFFFFFFFFFFh
     and rbx, 80808080h
 
+    정답: RBX = 0000 0000 8080 8080h
 
 
 
