@@ -1,4 +1,4 @@
-# 어셈블리 언어 연습문제 1~10 풀이
+# Algorithm Workbench
 
 ## 1. ASCII 숫자를 이진 숫자 값으로 변환
 
