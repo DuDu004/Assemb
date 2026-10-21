@@ -161,7 +161,7 @@ END main
 
 ### 풀이 코드 — `Ex03_CalcGrade.asm`
 
-```
+```asm
 TITLE Test Score Evaluation
 
 INCLUDE Irvine32.inc
