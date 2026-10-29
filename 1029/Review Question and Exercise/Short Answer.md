@@ -1,8 +1,6 @@
 # Short Answer
 
-## 1. SHR, SAR, ROL
-
-**영문 문제:** In the following code sequence, show the value of AL after each shift or rotate instruction has executed.
+## 1. In the following code sequence, show the value of AL after each shift or rotate instruction has executed.[SHR, SAR, ROL]
 
 **한국어 번역:** 다음 코드에서 각 시프트 또는 회전 명령어를 실행한 후 `AL`의 값을 구하시오.
 
@@ -21,9 +19,7 @@ rol al,1     ; d  10101001b
 
 **짧은 풀이:** `D4h = 11010100b`. `SHR`은 왼쪽에 0을 채우고, `SAR`은 부호 비트(1)를 유지하며, `ROL`은 왼쪽에서 밀려난 비트를 오른쪽 끝에 넣는다.
 
-## 2. ROR, ROL, RCL, RCR
-
-**영문 문제:** In the following code sequence, show the value of AL after each shift or rotate instruction has executed.
+## 2. In the following code sequence, show the value of AL after each shift or rotate instruction has executed.[ROR, ROL, RCL, RCR]
 
 **한국어 번역:** 다음 코드에서 각 회전 명령어를 실행한 후 `AL`의 값을 구하시오. `STC`는 Carry Flag를 1로 설정한다.
 
@@ -44,9 +40,7 @@ rcr al,3     ; d  00111010b  CF:1
 
 **짧은 풀이:** `ROR`·`ROL`은 8비트 안에서 회전한다. `RCL`·`RCR`은 Carry Flag까지 포함한 9비트를 회전한다. c와 d는 각각 `STC`로 초기 CF가 1이다.
 
-## 3. MUL 결과
-
-**영문 문제:** What will be the contents of AX and DX after the following operation?
+## 3. What will be the contents of AX and DX after the following operation?[MUL 결과]
 
 **한국어 번역:** 다음 연산을 수행한 후 `AX`와 `DX`의 값은 무엇인가?
 
@@ -61,9 +55,7 @@ mul cx
 
 **짧은 풀이:** `0222h × 0100h = 00022200h`. 16비트 `MUL`의 32비트 결과는 `DX:AX`에 저장된다.
 
-## 4. 8비트 DIV 결과
-
-**영문 문제:** What will be the contents of AX after the following operation?
+## 4. What will be the contents of AX after the following operation?[8비트 DIV 결과]
 
 **한국어 번역:** 다음 연산을 수행한 후 `AX`의 값은 무엇인가?
 
@@ -77,9 +69,7 @@ div bl
 
 **짧은 풀이:** `63h ÷ 10h = 6`, 나머지 `3`. 8비트 `DIV`는 몫을 `AL`, 나머지를 `AH`에 저장한다.
 
-## 5. 32비트 DIV 결과
-
-**영문 문제:** What will be the contents of EAX and EDX after the following operation?
+## 5. What will be the contents of EAX and EDX after the following operation?[32비트 DIV 결과]
 
 **한국어 번역:** 다음 연산을 수행한 후 `EAX`와 `EDX`의 값은 무엇인가?
 
@@ -96,9 +86,7 @@ div ebx
 
 > 원문에서 5번 뒤에 나열된 `DIV, IDIV, IMUL, MUL, RCL, RCR, ROL, ROR, SAL, SAR, SBB, SHL, SHLD, SHR, SHRD`는 별도의 계산 문제가 아니라 명령어 이름 목록으로 보아 정답 계산 대상에서 제외했다.
 
-## 6. DIV에서 몫 오버플로
-
-**영문 문제:** What will be the contents of AX and DX after the following operation?
+## 6. What will be the contents of AX and DX after the following operation?[DIV에서 몫 오버플로]
 
 **한국어 번역:** 다음 연산을 수행한 후 `AX`와 `DX`의 값은 무엇인가?
 
@@ -113,9 +101,7 @@ div bx
 
 **짧은 풀이:** `DX:AX = 05004000h`이고, 이를 `10h`로 나누면 몫은 `00500400h`이다. 16비트 `DIV`의 몫은 `AX`(최대 `FFFFh`)에 들어가야 하므로 범위를 초과한다.
 
-## 7. ADC와 Carry Flag
-
-**영문 문제:** What will be the contents of BX after the following instructions execute?
+## 7. What will be the contents of BX after the following instructions execute?[ADC와 Carry Flag]
 
 **한국어 번역:** 다음 명령어들을 실행한 후 `BX`의 값은 무엇인가?
 
@@ -130,9 +116,7 @@ adc bx,ax
 
 **짧은 풀이:** `STC`가 CF를 1로 설정한다. `ADC`는 두 피연산자와 CF를 더하므로 `5 + 60h + 1 = 66h`이다.
 
-## 8. 64비트 DIV
-
-**영문 문제:** Describe the output when the following code executes in 64-bit mode.
+## 8. Describe the output when the following code executes in 64-bit mode.[64비트 DIV]
 
 **한국어 번역:** 다음 코드를 64비트 모드에서 실행할 때 발생하는 결과를 설명하시오.
 
@@ -151,9 +135,7 @@ div divisor
 
 **짧은 풀이:** `DIV`는 128비트 피제수 `RDX:RAX`를 `100h`로 나눈다. `RDX = 108h`가 제수 `100h` 이상이므로 몫이 64비트 `RAX`에 들어갈 수 없다.
 
-## 9. 64비트 정수 뺄셈 코드 수정
-
-**영문 문제:** The following program is supposed to subtract val2 from val1. Find and correct all logic errors (CLC clears the Carry flag).
+## 9. The following program is supposed to subtract val2 from val1. Find and correct all logic errors (CLC clears the Carry flag)[64비트 정수 뺄셈 코드 수정]
 
 **한국어 번역:** 다음 프로그램은 `val1`에서 `val2`를 빼려고 한다. 논리 오류를 모두 찾아 수정하시오. (`CLC`는 Carry Flag를 0으로 초기화한다.)
 
@@ -203,9 +185,7 @@ top:
 
 **최종 결과:** `result = 1AEE1FD3EBFA16EFh`
 
-## 10. 64비트 IMUL
-
-**영문 문제:** What will be the hexadecimal contents of RAX after the following instructions execute in 64-bit mode?
+## 10. What will be the hexadecimal contents of RAX after the following instructions execute in 64-bit mode?[64비트 IMUL]
 
 **한국어 번역:** 다음 명령어를 64비트 모드에서 실행한 후 `RAX`에 저장된 16진수 값은 무엇인가?
 
