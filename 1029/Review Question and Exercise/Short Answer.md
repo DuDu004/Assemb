@@ -145,17 +145,17 @@ val1 QWORD 20403004362047A1h
 val2 QWORD 055210304A2630B2h
 result QWORD 0
 .code
-mov cx,8
-mov esi,val1
-mov edi,val2
-clc
+    mov cx,8
+    mov esi,val1
+    mov edi,val2
+    clc
 top:
-mov al,BYTE PTR[esi]
-sbb al,BYTE PTR[edi]
-mov BYTE PTR[esi],al
-dec esi
-dec edi
-loop top
+    mov al,BYTE PTR[esi]
+    sbb al,BYTE PTR[edi]
+    mov BYTE PTR[esi],al
+    dec esi
+    dec edi
+    loop top
 ```
 
 **정답(64비트 MASM 기준):**
