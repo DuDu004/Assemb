@@ -66,6 +66,10 @@ DX:AX   = 상위 16비트 : 하위 16비트 (32비트 값)
 | `SHLD` | Shift Left Double          | 왼쪽      | 다른 피연산자의 상위 비트 | 밀려난 비트            |
 | `SHRD` | Shift Right Double         | 오른쪽    | 다른 피연산자의 하위 비트 | 밀려난 비트            |
 
+SHIFT: 시프트
+Shift Arithmetic: 산술 시프트
+ROTATE: <<, >>
+
 기본 형식:
 
 ```asm
