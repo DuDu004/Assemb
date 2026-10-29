@@ -1,4 +1,4 @@
-# 어셈블리 연습문제 1~10번 정답
+# Short Answer
 
 ## 1. SHR, SAR, ROL
 
