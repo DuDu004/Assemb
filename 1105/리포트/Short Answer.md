@@ -22,6 +22,7 @@ C 함수가 32비트 정수를 반환할 때, 반환값은 어디에 저장되�
 **정답**  
 `EAX` 레지스터.
 
+---
 ### 3. How does a program using the STDCALL calling convention clean up the stack after a procedure call?
 
 **한글 번역**
@@ -31,6 +32,7 @@ STDCALL 호출 규약을 사용하는 프로그램에서는 프로시저 호출 
 **정답**  
 호출된 프로시저가 `RET n` 명령으로 매개변수 `n`바이트를 스택에서 제거한다.
 
+---
 ### 4. How is the LEA instruction more powerful than the OFFSET operator?
 
 **한글 번역**
@@ -40,6 +42,7 @@ STDCALL 호출 규약을 사용하는 프로그램에서는 프로시저 호출 
 **정답**  
 `LEA`는 레지스터와 변위 등을 이용한 유효 주소를 **실행 중에 계산**할 수 있지만, `OFFSET`은 **어셈블 시점에 결정되는 주소**를 나타낸다.
 
+---
 ### 5. In the C++ example shown in Section 8.2.3, how much stack space is used by a variable of type int?
 
 **한글 번역**
@@ -49,6 +52,7 @@ STDCALL 호출 규약을 사용하는 프로그램에서는 프로시저 호출 
 **정답**  
 **4바이트(32비트).**
 
+---
 ### 6. What advantages might the C calling convention have over the STDCALL calling convention?
 
 **한글 번역**
@@ -58,6 +62,7 @@ C 호출 규약은 STDCALL 호출 규약에 비해 어떤 장점이 있는가?
 **정답**  
 **가변 개수의 인수(variable arguments)**를 전달할 수 있다. 호출자가 스택을 정리하므로 인수 개수가 호출마다 달라도 된다.
 
+---
 ### 7. (True/False): When using the PROC directive, all parameters must be listed on the same line.
 
 **한글 번역**
@@ -67,6 +72,7 @@ C 호출 규약은 STDCALL 호출 규약에 비해 어떤 장점이 있는가?
 **정답**  
 **False (거짓).**
 
+---
 ### 8. (True/False): If you pass a variable containing the offset of an array of bytes to a procedure that expects a pointer to an array of words, the assembler will flag this as an error.
 
 **한글 번역**
@@ -76,6 +82,7 @@ C 호출 규약은 STDCALL 호출 규약에 비해 어떤 장점이 있는가?
 **정답**  
 **False (거짓).**
 
+---
 ### 9. (True/False): If you pass an immediate value to a procedure that expects a reference parameter, you can generate a general-protection fault.
 
 **한글 번역**
