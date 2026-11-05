@@ -12,6 +12,7 @@
 일반적인 핵심 명령은 `MOV ESP, EBP`, `POP EBP`, `RET n`이다. (`n`: 피호출자가 정리할 매개변수 바이트 수. C 호출 규약이면 `RET`만 사용.)  
 저장한 레지스터를 복원하고, 지역 변수에 할당한 스택 공간을 해제한 다음, 이전 `EBP`를 복원하고 반환한다.
 
+---
 ### 2. When a C function returns a 32-bit integer, where is the return value stored?
 
 **한글 번역**
