@@ -1,5 +1,5 @@
 - **학번:** 2023964045
-- **이름:** Choi Young Woo
+- **이름:** 최영우
 - **개발 환경:** Visual Studio, MASM (x86, 32비트)
 - **사용 라이브러리:** C 표준 입출력 함수 `scanf`, `printf` (Irvine32 미사용)
 
